@@ -1,18 +1,16 @@
-const Connection = require('mysql2/typings/mysql/lib/Connection');
+const connection = require('./connection');
 
 const getAll = async () => {
-  const [products] = await Connection.execute(
-    `SELECT * FROM StoreManager.products
-    ORDER BY id`,
+  const [products] = await connection.execute(
+    'SELECT * FROM StoreManager.products ORDER BY id',
   );
 
   return products;
 };
 
 const getById = async (productId) => {
-  const [{ product }] = await Connection.execute(
-    `SELECT * FROM StoreManager.products
-    WHER id = ?`,
+  const [[product]] = await connection.execute(
+    'SELECT * FROM StoreManager.products WHERE id = ?',
     [productId],
   );
 
