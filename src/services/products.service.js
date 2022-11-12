@@ -15,6 +15,7 @@ const getByIdProducts = async (productId) => {
 const insertProduct = async (productName) => {
   const newProductId = await productsModel.addNewProduct(productName);
   const newProduct = await productsModel.getById(newProductId);
+  if (!newProduct) { return { type: 'PRODUCT_NOT_FOUND', message: 'Invalid name' }; }
 
   return { type: null, message: newProduct };
 };
