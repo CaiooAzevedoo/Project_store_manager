@@ -8,6 +8,14 @@ const getAll = async () => {
   return products;
 };
 
+// async function getAll() {
+//   const [products] = await connection.execute(
+//     'SELECT * FROM StoreManager.products ORDER BY id',
+//   );
+
+//   return products.resolves();
+// }
+
 const getById = async (productId) => {
   const [[product]] = await connection.execute(
     'SELECT * FROM StoreManager.products WHERE id = ?',

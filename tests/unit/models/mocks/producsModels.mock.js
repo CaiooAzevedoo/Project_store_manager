@@ -1,4 +1,4 @@
-[
+const products = [
   {
     id: 1,
     name: "Martelo de Thor",
@@ -11,4 +11,15 @@
     id: 3,
     name: "Escudo do Capitão América",
   },
+  undefined,
 ];
+
+const product = {
+  id: 3,
+  name: "Escudo do Capitão América",
+};
+
+module.exports = {
+  products,
+  product,
+}
