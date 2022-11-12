@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon  = require('sinon');
 const connection = require('../../../src/models/connection');
 const { productsModel } = require('../../../src/models');
-const { products, product } = require('../../mocks/db.mock');
+const { products, product } = require('../mocks/db.mock');
 
 describe('Testa a camada model de Products', function () {
   afterEach(sinon.restore);
