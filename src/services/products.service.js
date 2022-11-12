@@ -13,13 +13,10 @@ const getByIdProducts = async (productId) => {
 };
 
 const insertProduct = async (productName) => {
-  const newProductId = await productsModel.insert(productName);
-  const newProduct = await productsModel.getAll(newProductId);
+  const newProductId = await productsModel.addNewProduct(productName);
+  const newProduct = await productsModel.getById(newProductId);
 
-  // if (!newProductId || !newProduct) { return { type: 'INVALID_VALUE', message: 'Invalid value' }; }
-  // return { type: null, message: newProduct };
-
-  return newProduct;
+  return { type: null, message: newProduct };
 };
 
 module.exports = {
