@@ -15,7 +15,17 @@ const getProduct = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const postProduct = async (req, res) => {
+  const { name } = req.body;
+  const product = await productsService.insertProduct(name);
+
+  // if (type) return res.status(errorMap.mapError(type)).json({ message });
+
+  return res.status(201).json(product);
+};
+
 module.exports = {
   productsList,
   getProduct,
+  postProduct,
 };
