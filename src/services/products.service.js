@@ -1,18 +1,29 @@
-const { productsModel } = require('../models');
+const productsModel = require('../models/products.model');
 
-const getAll = async () => {
+const getAllProducts = async () => {
   const products = await productsModel.getAll();
   return products;
 };
 
-const getById = async (productId) => {
+const getByIdProducts = async (productId) => {
   const product = await productsModel.getById(productId);
-  if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  if (!product) { return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' }; }
 
   return { type: null, message: product };
 };
+// const getAll = async () => {
+//   const products = await productsModel.getAll();
+//   return products;
+// };
+
+// const getById = async (productId) => {
+//   const product = await productsModel.getById(productId);
+//   if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+
+//   return { type: null, message: product };
+// };
 
 module.exports = {
-  getAll,
-  getById,
+  getAllProducts,
+  getByIdProducts,
 };

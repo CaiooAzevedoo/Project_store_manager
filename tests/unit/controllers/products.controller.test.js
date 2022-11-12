@@ -1,7 +1,7 @@
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
-const { productsService } = require('../../../src/services');
+const productsService = require('../../../src/services/products.service');
 const { products, product } = require('../mocks/db.mock');
 const productsController = require('../../../src/controllers/products.controller')
 
@@ -17,7 +17,7 @@ describe('Testa a camada controller de products', function () {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    sinon.stub(productsService, 'getAll').resolves(products);
+    sinon.stub(productsService, 'getAllProducts').resolves(products);
     await productsController.productsList(req, res);
 
     expect(res.status).to.have.been.calledWith(200);
@@ -30,7 +30,7 @@ describe('Testa a camada controller de products', function () {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    sinon.stub(productsService, 'getById').resolves(product);
+    sinon.stub(productsService, 'getByIdProducts').resolves(product);
     await productsController.getProduct(req, res);
 
     expect(res.status).to.have.been.calledWith(200);
@@ -43,7 +43,7 @@ describe('Testa a camada controller de products', function () {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    sinon.stub(productsService, 'getById').resolves({
+    sinon.stub(productsService, 'getByIdProducts').resolves({
       type: 'PRODUCT_NOT_FOUND',
       message: 'Product not found',
     });
