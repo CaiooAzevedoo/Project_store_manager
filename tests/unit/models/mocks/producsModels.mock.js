@@ -11,7 +11,6 @@ const products = [
     id: 3,
     name: "Escudo do Capitão América",
   },
-  undefined,
 ];
 
 const product = {
