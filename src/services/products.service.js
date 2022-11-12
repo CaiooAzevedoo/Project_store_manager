@@ -1,5 +1,4 @@
 const { productsModel } = require('../models');
-// const { productsModel } = require("../models");
 
 const getAll = async () => {
   const products = await productsModel.getAll();
