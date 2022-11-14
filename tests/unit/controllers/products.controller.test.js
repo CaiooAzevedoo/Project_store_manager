@@ -69,22 +69,22 @@ describe("Testa a camada controller de products", function () {
 
   });
 
-  // it("Valida se um erro é retornado ao inserir nome invalido", async function () {
-  //   const req = { body: { name: xablau } };
-  //   const res = {};
-  //   res.status = sinon.stub().returns(res);
-  //   res.json = sinon.stub().returns();
+  it("Valida se um erro é retornado ao inserir nome invalido", async function () {
+    const req = { body: { name: 'xablau' } };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
 
-  //   sinon.stub(productsService, "insertProduct").resolves({
-  //     type: "NAME_IS_REQUIRED",
-  //     message: "Invalid name",
-  //   });
-  //   await productsController.postProduct(req, res);
+    sinon.stub(productsService, "insertProduct").resolves({
+      type: "NAME_IS_REQUIRED",
+      message: "Invalid name",
+    });
+    await productsController.postProduct(req, res);
 
-  //   expect(res.status).to.have.been.calledWith(404);
-  //   expect(res.json).to.have.been.calledWith({
-  //     message: "Invalid name",
-  //   });
-  // });
+    expect(res.status).to.have.been.calledWith(400);
+    expect(res.json).to.have.been.calledWith({
+      message: "Invalid name",
+    });
+  });
 
 });
