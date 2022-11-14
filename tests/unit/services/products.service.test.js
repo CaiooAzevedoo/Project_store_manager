@@ -40,5 +40,15 @@ describe('Testa a camada Service de Products', function () {
        type: null,
        message: dbMock.newProduct,
      });
-  });
+    });
+
+    it("Valida se um erro é retornado ao inserir um npme invaldo", async function () {
+      sinon.stub(productsModel, "addNewProduct").resolves([{ insertId: 'xablau' }]);
+       sinon.stub(productsModel, "getById").resolves();
+      const result = await productsService.insertProduct('xablau');
+      expect(result).to.be.deep.equal({
+        type: 'PRODUCT_NOT_FOUND',
+        message: 'Invalid name',
+      });
+    });
 });
