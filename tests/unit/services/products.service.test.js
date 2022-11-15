@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const productsModel = require('../../../src/models/products.model');
-const dbMock = require('../mocks/db.mock');
+const dbMock = require('../mocks/product.mock');
 const productsService = require('../../../src/services/products.service');
 
 
@@ -42,7 +42,7 @@ describe('Testa a camada Service de Products', function () {
      });
     });
 
-    it("Valida se um erro é retornado ao inserir um npme invaldo", async function () {
+    it("Valida se um erro é retornado ao inserir um nome invaldo", async function () {
       sinon.stub(productsModel, "addNewProduct").resolves([{ insertId: 'xablau' }]);
        sinon.stub(productsModel, "getById").resolves();
       const result = await productsService.insertProduct('xablau');
