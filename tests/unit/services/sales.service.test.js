@@ -8,8 +8,8 @@ describe("Testa camada service de sales", function () {
  afterEach(sinon.restore);
 
   it("Valida se é possível cadastra uma nova venda", async function () {
-    sinon.stub(salesModel, "insertSale").resolves(3);
-    const result = await salesService.newSale([salesMock.newSale]);
+    sinon.stub(salesModel, "addNewSale").resolves(3);
+    const result = await salesService.insertSale([salesMock.newSale]);
     expect(result).to.be.deep.equal({
       id: 3,
       itemsSold: [salesMock.newSale],
@@ -17,11 +17,11 @@ describe("Testa camada service de sales", function () {
   });
 
   it("Valida se um erro é retornado ao realizar um cadastro de venda errada", async function () {
-    sinon.stub(salesModel, "insertSale").resolves();
-    const result = await salesService.newSale("xablau");
+    sinon.stub(salesModel, "addNewSale").resolves(undefined);
+    const result = await salesService.insertSale("xablau");
     expect(result).to.be.deep.equal({
       type: "SALE_INVALID",
-      message: "Sale invalid",
+      message: "Product not found",
     });
   });
 

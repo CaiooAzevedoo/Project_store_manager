@@ -10,12 +10,12 @@ describe('Testa a camada Service de Products', function () {
 
   it('Valida se o endpoint criado devolve a lista de produtos', async function () {
     sinon.stub(productsModel, 'getAll').resolves(dbMock.products);
-    const result = await productsService.getAllProducts();
+    const result = await productsService.getAllProducts(undefined);
     expect(result).to.be.deep.equal(dbMock.products);
   });
 
   it('Valida se é possível listar apenas um produto pelo id', async function () {
-    sinon.stub(productsModel, "getById").resolves(dbMock.product);
+    sinon.stub(productsModel, "getById").resolves(dbMock.products[2]);
     const result = await productsService.getByIdProducts(3);
      expect(result).to.be.deep.equal({
        type: null,
@@ -44,7 +44,7 @@ describe('Testa a camada Service de Products', function () {
 
     it("Valida se um erro é retornado ao inserir um nome invaldo", async function () {
       sinon.stub(productsModel, "addNewProduct").resolves([{ insertId: 'xablau' }]);
-       sinon.stub(productsModel, "getById").resolves();
+       sinon.stub(productsModel, "getById").resolves(undefined);
       const result = await productsService.insertProduct('xablau');
       expect(result).to.be.deep.equal({
         type: 'PRODUCT_NOT_FOUND',

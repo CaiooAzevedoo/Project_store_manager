@@ -30,7 +30,7 @@ describe('Testa a camada controller de products', function () {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    sinon.stub(productsService, 'getByIdProducts').resolves(dbMock.product);
+    sinon.stub(productsService, 'getByIdProducts').resolves(dbMock.products[2]);
     await productsController.getProduct(req, res);
 
     sinon.assert.calledWith(res.status, 200);
@@ -56,16 +56,17 @@ describe('Testa a camada controller de products', function () {
   });
 
   it('Valida se é possível cadastrar um produto', async function () {
-    const req = { body: { name: 'Produto1' } };
+    // const req = { body: { name: 'Produto1' } };
+    const req = { body: [dbMock.newProduct] };
     const res = {};
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    sinon.stub(productsService, 'insertProduct').resolves(dbMock.newProduct);
+    sinon.stub(productsService, 'insertProduct').resolves({type: null, message: dbMock.newProduct});
     await productsController.postProduct(req, res);
 
     expect(res.status).to.have.been.calledWith(201);
-    expect(res.json).to.have.been.calledWith();
+    expect(res.json).to.have.been.calledWith(dbMock.newProduct);
 
   });
 

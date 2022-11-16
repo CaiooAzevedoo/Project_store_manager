@@ -9,7 +9,7 @@ describe('Testa camada model de sales', function () {
 
  it('Cadastrando uma nova venda', async function () {
     sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
-    const result = await salesModel.insertSale(salesMock.newSale);
+    const result = await salesModel.addNewSale(salesMock.newSale);
     expect(result).to.equal(1);
   });
 });

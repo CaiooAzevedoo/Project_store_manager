@@ -1,7 +1,7 @@
 // const snakeize = require('snakeize');
 const connection = require('./connection');
 
-const insertSale = async (sale) => {
+const addNewSale = async (sale) => {
   const columns = Object.keys(sale).join(', ');
 
   const placeHolders = Object.keys(sale)
@@ -40,5 +40,5 @@ const insertSale = async (sale) => {
 // };
 
 module.exports = {
-  insertSale,
+  addNewSale,
 };

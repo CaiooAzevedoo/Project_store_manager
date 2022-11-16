@@ -9,7 +9,7 @@ describe('Testa a camada model de Products', function () {
 
   it('Valida se o endpoint criado devolve a lista de produtos', async function () {
     sinon.stub(connection, 'execute').resolves([dbMock.products]);
-    const result = await productsModel.getAll();
+    const result = await productsModel.getAll(undefined);
     expect(result).to.be.deep.equal(dbMock.products);
   });
 
