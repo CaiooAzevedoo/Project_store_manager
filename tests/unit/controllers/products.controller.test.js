@@ -56,7 +56,6 @@ describe('Testa a camada controller de products', function () {
   });
 
   it('Valida se é possível cadastrar um produto', async function () {
-    // const req = { body: { name: 'Produto1' } };
     const req = { body: [dbMock.newProduct] };
     const res = {};
     res.status = sinon.stub().returns(res);

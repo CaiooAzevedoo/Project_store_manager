@@ -3,11 +3,11 @@ const errorMap = require('../utils/errorMap');
 
 const postSale = async (req, res) => {
   const newSales = req.body;
-  const { type, message } = await salesService.insertSale(newSales);
+  const { type, message, id, itemsSold } = await salesService.insertSale(newSales);
 
   if (type) return res.status(errorMap.mapError(type)).json({ message });
 
-  return res.status(201).json(message);
+  return res.status(201).json({ id, itemsSold });
 };
 
 module.exports = {
