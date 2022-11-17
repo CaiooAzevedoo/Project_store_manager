@@ -6,7 +6,7 @@ const insertSale = async (sale) => {
     return { type: 'SALE_INVALID', message: 'Product not found' };
   }
 
-  return { id: newSaleId, itemsSold: sale };
+  return { type: null, id: newSaleId, itemsSold: sale };
 };
 
 module.exports = {

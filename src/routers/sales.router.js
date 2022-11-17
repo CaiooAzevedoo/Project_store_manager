@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.post(
   '/',
-
   validateSales.requiredQuantity,
   validateSales.requiredProductId,
   salesController.postSale,

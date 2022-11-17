@@ -16,7 +16,7 @@ const addNewSale = async (sale) => {
   return insertId;
 };
 
-// const newSale = async (sales) => {
+// const addNewSale = async (sales) => {
 //   await connection.execute(
 //     'INSERT INTO StoreManager.sales (date) VALUE (NOW())',
 //   );
@@ -27,14 +27,14 @@ const addNewSale = async (sale) => {
 
 //   const nextId = highestId + 1;
 
-//   const newSales = sales.map(async ({ productId, quantity }) => {
+//   const addNewSales = sales.map(async ({ productId, quantity }) => {
 //     await connection.execute(
 //       'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
 //       [nextId, productId, quantity],
 //     );
 //   });
 
-//   await Promise.all(newSales);
+//   await Promise.all(addNewSales);
 
 //   return nextId;
 // };
