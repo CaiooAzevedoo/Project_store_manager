@@ -1,20 +1,4 @@
-// const snakeize = require('snakeize');
 const connection = require('./connection');
-
-// const addNewSale = async (sale) => {
-//   const columns = Object.keys(sale).join(', ');
-
-//   const placeHolders = Object.keys(sale)
-//     .map((_key) => '?')
-//     .join(', ');
-
-//   const [{ insertId }] = await connection.execute(
-//     `INSERT INTO StoreManager.sales_products(${columns}) () VALUES ${placeHolders}`,
-//     [...Object.values(sale)],
-//   );
-
-//   return insertId;
-// };
 
 const addNewSale = async (sales) => {
   await connection.execute(
@@ -39,6 +23,35 @@ const addNewSale = async (sales) => {
   return nextId;
 };
 
+const getAll = async () => {
+  const [sale] = await connection.execute(
+  ` SELECT sales_products.sale_id as saleId,
+    sales.date,
+    sales_products.product_id as productId,
+    sales_products.quantity
+    FROM sales_products
+    INNER JOIN sales
+    ON sales.id = sales_products.sale_id
+    ORDER BY sales_products.sale_id, sales_products.product_id;`,
+  );
+
+  return sale;
+};
+
+const getById = async (id) => {
+  const [sale] = await connection.execute(
+  ` SELECT sales.date, sales_products.product_id as productId, sales_products.quantity
+    FROM sales_products
+    INNER JOIN sales ON sales.id = sales_products.sale_id
+    WHERE sales_products.sale_id = ?
+    ORDER BY sales_products.sale_id, sales_products.product_id`,
+    [id],
+  );
+  return sale;
+};
+
 module.exports = {
   addNewSale,
+  getAll,
+  getById,
 };

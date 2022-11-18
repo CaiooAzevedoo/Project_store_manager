@@ -10,5 +10,7 @@ router.post(
   validateSales.requiredProductId,
   salesController.postSale,
 );
+router.get('/', salesController.getListSales);
+router.get('/:id', salesController.getSale);
 
 module.exports = router;
