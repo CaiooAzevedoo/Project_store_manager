@@ -20,8 +20,20 @@ const insertProduct = async (productName) => {
   return { type: null, message: newProduct };
 };
 
+const updateProduct = async (id) => {
+  const product = await productsModel.getById(id);
+  const productUpdate = await productsModel.updateProduct(product);
+
+  if (productUpdate === undefined) {
+    return { type: 'PRODUCT_NOT_FOUND', message: 'Invalid name' };
+  }
+
+  return { type: null, message: productUpdate };
+};
+
 module.exports = {
   getAllProducts,
   getByIdProducts,
   insertProduct,
+  updateProduct,
 };

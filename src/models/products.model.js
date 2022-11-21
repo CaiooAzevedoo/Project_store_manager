@@ -33,10 +33,11 @@ const getAllId = async () => {
   return ids;
 };
 
-const updateProduct = async () => {
-  'SELECT id FROM StoreManager.products',
-
-  return;
+const updateProduct = async (productName, id) => {
+  await connection.execute(
+    'UPDATE StoreManager.products SET name = ? WHERE id = ?',
+    [productName, id],
+  );
 };
 
 module.exports = {
