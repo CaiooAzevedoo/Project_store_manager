@@ -11,8 +11,11 @@ const postSale = async (req, res) => {
 };
 
 const getListSales = async (_req, res) => {
-  const sales = await salesService.getAllsales();
-  return res.status(200).json(sales);
+  const { type, message } = await salesService.getAllsales();
+
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
+
+    return res.status(200).json(message);
 };
 
 const getSale = async (req, res) => {
