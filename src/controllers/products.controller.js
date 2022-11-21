@@ -24,11 +24,18 @@ const postProduct = async (req, res) => {
   return res.status(201).json(message);
 };
 
-const putUpdateProduct = async (req, res) => {
-  const { id } = req.body;
-  const { type, message } = await productsService.updateProduct(id);
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  // const checkProduct = await productsService.getByIdProducts(id);
+  const { type, message } = await productsService.updateProduct(id, name);
+
+  // if (!checkProduct) { return res.status(404).json({ message: 'Product not found' }); }
+  // if (type === undefined) { };
 
   if (type) return res.status(errorMap.mapError(type)).json({ message });
+  console.log({ message });
 
   return res.status(200).json(message);
 };
@@ -37,5 +44,5 @@ module.exports = {
   productsList,
   getProduct,
   postProduct,
-  putUpdateProduct,
+  updateProduct,
 };

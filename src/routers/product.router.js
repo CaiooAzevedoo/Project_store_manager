@@ -10,7 +10,7 @@ router.post('/', validateProducts.fildNameValidate, productsController.postProdu
 router.put(
   '/:id',
   validateProducts.fildNameValidate,
-  productsController.putUpdateProduct,
+  productsController.updateProduct,
 );
 
 module.exports = router;
