@@ -33,9 +33,16 @@ const getAllId = async () => {
   return ids;
 };
 
+const updateProduct = async () => {
+  'SELECT id FROM StoreManager.products',
+
+  return;
+};
+
 module.exports = {
   getAll,
   getById,
   addNewProduct,
   getAllId,
+  updateProduct,
 };
