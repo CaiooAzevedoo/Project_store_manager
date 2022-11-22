@@ -1,6 +1,6 @@
 const newSale = [
   {
-    id: 3,
+    id: 4,
     itemsSold: [
       {
         productId: 1,
@@ -14,6 +14,7 @@ const newSale = [
   },
 ];
 
+
 module.exports = {
   newSale,
-}
+};

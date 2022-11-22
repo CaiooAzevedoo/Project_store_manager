@@ -8,8 +8,9 @@
 //  afterEach(sinon.restore);
 
 //  it('Cadastrando uma nova venda', async function () {
-//     sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
-//     const result = await salesModel.addNewSale(salesMock.newSale);
-//     expect(result).to.equal(1);
-//   });
+//    sinon.stub(connection, "execute").resolves([salesMock.newSaleModel]);
+//     const result = await salesModel.addNewSale(4,[salesMock.newSaleModel]);
+//     expect(result).to.equal([4, salesMock.newSale]);
+//  });
+
 // });
