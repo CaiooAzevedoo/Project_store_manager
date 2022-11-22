@@ -87,4 +87,16 @@ describe('Testa a camada controller de products', function () {
     });
   });
 
+   it("Valida se é possível deletar um produto pelo id", async function () {
+     const req = { params: { id: 2 } };
+     const res = {};
+     res.status = sinon.stub().returns(res);
+     res.end = sinon.stub().returns();
+
+     sinon.stub(productsService, "deleteByIdProduct").resolves(dbMock.products[2]);
+     await productsController.deleteProduct(req, res);
+
+     sinon.assert.calledWith(res.status, 204);
+     sinon.assert.calledWith(res.end);
+   });
 });

@@ -24,4 +24,10 @@ describe('Testa a camada model de Products', function () {
     const result = await productsModel.addNewProduct(dbMock.newProduct)
     expect(result).to.equal(4);
   });
+
+  it('Valida se é possível deletar um produto', async function () {
+    sinon.stub(connection, 'execute').resolves();
+    const result = await productsModel.deleteProduct(2);
+    expect(result).to.be.deep.equal({ id: 2 });
+  });
 });

@@ -68,15 +68,6 @@ this.afterEach(sinon.restore);
 });
 
 
-//  it('Valida se um erro é retornado ao realizar um cadastro de venda errada', async function () {
-//    sinon.stub(salesModel, 'addNewSale').resolves(undefined);
-//    const result = await salesService.insertSale('xablau');
-//    expect(result).to.be.deep.equal({
-//      type: 'SALE_INVALID',
-//      message: 'Product not found',
-//    });
-//  });
-
 
 
 

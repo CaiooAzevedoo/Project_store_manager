@@ -15,7 +15,7 @@ describe('Testa a camada Service de Products', function () {
   });
 
   it('Valida se é possível listar apenas um produto pelo id', async function () {
-    sinon.stub(productsModel, "getById").resolves(dbMock.products[2]);
+    sinon.stub(productsModel, 'getById').resolves(dbMock.products[2]);
     const result = await productsService.getByIdProducts(3);
      expect(result).to.be.deep.equal({
        type: null,
@@ -42,13 +42,23 @@ describe('Testa a camada Service de Products', function () {
      });
     });
 
-    it("Valida se um erro é retornado ao inserir um nome invaldo", async function () {
-      sinon.stub(productsModel, "addNewProduct").resolves([{ insertId: 'xablau' }]);
-       sinon.stub(productsModel, "getById").resolves(undefined);
+    it('Valida se um erro é retornado ao inserir um nome invaldo', async function () {
+      sinon.stub(productsModel, 'addNewProduct').resolves([{ insertId: 'xablau' }]);
+       sinon.stub(productsModel, 'getById').resolves(undefined);
       const result = await productsService.insertProduct('xablau');
       expect(result).to.be.deep.equal({
         type: 'PRODUCT_NOT_FOUND',
         message: 'Invalid name',
       });
     });
+
+   it('Valida se é possível deletar um produto pelo id', async function () {
+     sinon.stub(productsModel, 'deleteProduct').resolves({ id: 2 });
+     const result = await productsService.deleteByIdProduct(2);
+     expect(result).to.be.deep.equal({
+       type: null,
+       message: { id: 2 },
+     });
+   });
+
 });
