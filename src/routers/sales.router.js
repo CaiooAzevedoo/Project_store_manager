@@ -18,5 +18,9 @@ router.post(
   validateSales.requiredProductId,
   salesController.postSale,
 );
+router.delete(
+  '/:id',
+  salesController.deleteSale,
+);
 
 module.exports = router;
