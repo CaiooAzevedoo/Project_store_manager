@@ -26,10 +26,12 @@ const getByIdSales = async (saleId) => {
    return { type: null, message: sale };
 };
 
-const deletSale = async (saleId) => {
+const deleteByIdSale = async (saleId) => {
   const sale = await salesModel.getById(saleId);
   const saleDelete = await salesModel.deleteSale(saleId);
-  if (!sale) { return { type: 'SALE_NOT_FOUND', message: 'Sale not found' }; }
+  if (!sale || sale.length === 0) {
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  }
 
   return { type: null, message: saleDelete };
 };
@@ -38,5 +40,5 @@ module.exports = {
   insertSale,
   getAllSales,
   getByIdSales,
-  deletSale,
+  deleteByIdSale,
 };
