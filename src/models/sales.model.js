@@ -6,7 +6,7 @@ const addNewSale = async (sales) => {
   );
 
   const [[{ highestId }]] = await connection.execute(
-    'SELECT MAX(sale_id) AS highestId FROM StoreManager.sales_products',
+    'SELECT MAX(sale_id) highestId FROM StoreManager.sales_products',
   );
 
   const nextId = highestId + 1;
@@ -25,9 +25,9 @@ const addNewSale = async (sales) => {
 
 const getAll = async () => {
   const [sale] = await connection.execute(
-  ` SELECT sales_products.sale_id as saleId,
+  ` SELECT sales_products.sale_id saleId,
     sales.date,
-    sales_products.product_id as productId,
+    sales_products.product_id productId,
     sales_products.quantity
     FROM sales_products
     INNER JOIN sales
@@ -40,7 +40,7 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const [sale] = await connection.execute(
-  ` SELECT sales.date, sales_products.product_id as productId, sales_products.quantity
+  ` SELECT sales.date, sales_products.product_id productId, sales_products.quantity
     FROM sales_products
     INNER JOIN sales ON sales.id = sales_products.sale_id
     WHERE sales_products.sale_id = ?
@@ -63,9 +63,19 @@ const deleteSale = async (id) => {
   return { id };
 };
 
+const updateSale = async (id, { quantity, productId }) => {
+  await connection.execute(
+    'UPDATE StoreManager.sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',
+    [quantity, id, productId],
+  );
+
+  return { id, quantity, productId };
+};
+
 module.exports = {
   addNewSale,
   getAll,
   getById,
   deleteSale,
+  updateSale,
 };

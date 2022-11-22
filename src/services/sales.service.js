@@ -1,4 +1,5 @@
 const salesModel = require('../models/sales.model');
+const productModel = require('../models/products.model');
 
 const insertSale = async (sales) => {
   const newSaleId = await salesModel.addNewSale(sales);
@@ -36,9 +37,21 @@ const deleteByIdSale = async (saleId) => {
   return { type: null, message: saleDelete };
 };
 
+const updateByIdSale = async (quantity, id, productId) => {
+  const sale = await salesModel.getById(id);
+  const product = await productModel.getById(productId);
+  const saleUpdate = await salesModel.updateProduct(quantity, id, productId);
+ if (!sale || sale.length === 0 || !product || product === 0) {
+   return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+ }
+
+  return { type: null, message: saleUpdate };
+};
+
 module.exports = {
   insertSale,
   getAllSales,
   getByIdSales,
   deleteByIdSale,
+  updateByIdSale,
 };
