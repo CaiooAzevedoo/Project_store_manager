@@ -44,4 +44,14 @@ describe('Testa camada service de sales', function () {
     });
   });
 
+
+  it('Valida se é possível deletar uma venda pelo id', async function () {
+    sinon.stub(salesModel, 'deleteSale').resolves({id: 2});
+    const result = await salesService.deleteByIdSale(2);
+    expect(result).to.be.deep.equal({
+      type: null,
+      message: {id: 2},
+    });
+  });
+
 });

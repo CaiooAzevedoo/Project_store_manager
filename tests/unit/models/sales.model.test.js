@@ -13,16 +13,22 @@ describe('Testa camada model de sales', function () {
 //     expect(result).to.equal([4, salesMock.newSale]);
 //  });
 
- it('Valida se o endpoint criado devolve a lista de produtos', async () => {
-   sinon.stub(connection, "execute").resolves([salesMock.sales]);
+ it('Valida se o endpoint criado devolve a lista de vendas', async function () {
+   sinon.stub(connection, 'execute').resolves([salesMock.sales]);
    const result = await salesModel.getAll();
    expect(result).to.be.deep.equal(salesMock.sales);
  });
 
- it('Valida se é possível listar apenas um produto pelo id', async () => {
-   sinon.stub(connection, "execute").resolves([[salesMock.sales[2]]]);
+ it('Valida se é possível listar apenas uma venda pelo id', async function () {
+   sinon.stub(connection, 'execute').resolves([[salesMock.sales[2]]]);
    const [result] = await salesModel.getById(2);
    expect(result).to.be.deep.equal(salesMock.sales[2]);
  });
+
+  it('Valida se é possível deletar uma venda pelo id', async function () {
+    sinon.stub(connection, 'execute').resolves();
+    const result = await salesModel.deleteSale(2);
+    expect(result).to.be.deep.equal({id: 2});
+ })
 
 });
