@@ -11,7 +11,7 @@ const postSale = async (req, res) => {
 };
 
 const getListSales = async (_req, res) => {
-  const { type, message } = await salesService.getAllsales();
+  const { type, message } = await salesService.getAllSales();
 
   if (type) return res.status(errorMap.mapError(type)).json({ message });
 
