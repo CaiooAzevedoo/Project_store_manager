@@ -1,5 +1,4 @@
 const salesModel = require('../models/sales.model');
-// const validateSales = require('../middlewares/validateSales');
 
 const insertSale = async (sales) => {
   const newSaleId = await salesModel.addNewSale(sales);

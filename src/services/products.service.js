@@ -22,22 +22,10 @@ const insertProduct = async (productName) => {
 
 const updateProduct = async (productId, productName) => {
   const product = await productsModel.getById(productId);
-
+  const productUpdate = await productsModel.updateProduct(productId, productName);
   if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
 
-  const productUpdate = await productsModel.updateProduct(productId, productName);
-  // if (productUpdate === undefined) {
-  //   return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  // }
   return { type: null, message: productUpdate };
-
-    // const productUpdate = await productsModel.updateProduct(
-    //   productId,
-    //   productName,
-    // );
-    // return productUpdate
-    //   ? { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' }
-    //   : { type: null, message: productUpdate };
 };
 
 module.exports = {
